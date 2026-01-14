@@ -1,0 +1,127 @@
+@font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.eot");
+    src: url("../fonts/Flaticon-1.eot") format("embedded-opentype"),
+         url("../fonts/Flaticon.woff2") format("woff2"),
+         url("../fonts/Flaticon.woff") format("woff"),
+         url("../fonts/Flaticon.ttf") format("truetype"),
+         url("../fonts/Flaticon.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+      font-family: "Flaticon";
+      src: url("../fonts/Flaticon.svg") format("svg");
+    }
+  
+  }
+  
+  [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-family: Flaticon;
+    font-style: normal;
+  }
+  
+
+  .flaticon-biology:before {
+    content: "\f103";
+  }
+  
+  .flaticon-medical-laboratory:before {
+    content: "\f104";
+  }
+  
+  .flaticon-laboratory:before {
+    content: "\f100";
+  }
+  
+  .flaticon-flask:before {
+    content: "\f101";
+  }
+  
+  .flaticon-laboratory-1:before {
+    content: "\f102";
+  }
+
+  .flaticon-research:before {
+    content: "\f105";
+  }
+  
+  .flaticon-research-1:before {
+    content: "\f106";
+  }
+  
+  .flaticon-diabetes-test:before {
+    content: "\f107";
+  }
+  
+  .flaticon-blood:before {
+    content: "\f108";
+  }
+  
+  .flaticon-test:before {
+    content: "\f109";
+  }
+  
+  .flaticon-medical-laboratory-1:before {
+    content: "\f10a";
+  }
+  
+  .flaticon-heathcare-and-medical:before {
+    content: "\f10b";
+  }
+  
+  .flaticon-help-call:before {
+    content: "\f10c";
+  }
+  
+  .flaticon-award:before {
+    content: "\f10d";
+  }
+  
+  .flaticon-pharmacy:before {
+    content: "\f10e";
+  }
+
+  .flaticon-medical-history:before {
+    content: "\f115";
+  }
+  
+  .flaticon-medical-report:before {
+    content: "\f116";
+  }
+  
+  .flaticon-calendar:before {
+    content: "\f117";
+  }
+  
+  .flaticon-doctor-2:before {
+    content: "\f118";
+  }
+  
+  .flaticon-biology-1:before {
+    content: "\f10f";
+  }
+  
+  .flaticon-doctor:before {
+    content: "\f110";
+  }
+  
+  .flaticon-medical-assistance:before {
+    content: "\f111";
+  }
+  
+  .flaticon-doctor-1:before {
+    content: "\f112";
+  }
+  
+  .flaticon-hospital:before {
+    content: "\f113";
+  }
+  
+  .flaticon-working-hours:before {
+    content: "\f114";
+  }
+  
+  
