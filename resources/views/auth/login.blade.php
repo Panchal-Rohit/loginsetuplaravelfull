@@ -61,6 +61,9 @@
                     </div>
                 </div>
             </form>
+            <div class="col-8">
+                        <a href="{{ route('register') }}">Create a new account?</a>
+                    </div>
             <p class="mb-1">
                 <a href="{{ route('password.request') }}">I forgot my password</a>
             </p>

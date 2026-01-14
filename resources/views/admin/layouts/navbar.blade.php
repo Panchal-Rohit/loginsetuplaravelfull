@@ -1,4 +1,3 @@
-
 <nav class="app-header navbar navbar-expand bg-body">
 
   <div class="container-fluid">
@@ -23,17 +22,17 @@
           <span class="navbar-badge badge text-bg-danger"></span>
         </a>
 
-       <div class="dropdown-menu dropdown-menu-lg start-30 translate-middle-x">
+        <div class="dropdown-menu dropdown-menu-lg start-30 translate-middle-x">
 
 
-         
+
           <a href="#" class="dropdown-item">
 
             <div class="d-flex flex-column">
               <strong>ghghghg</strong>
 
               <span class="text-muted">
-                my name 
+                my name
               </span>
 
               <small class="text-secondary">
@@ -46,7 +45,7 @@
 
           <div class="dropdown-divider"></div>
 
-        
+
 
           <a href="#" class="dropdown-item dropdown-footer">
             View All Messages
@@ -69,7 +68,7 @@
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
 
           <!-- Profile Image -->
-          
+
 
           <span class="d-none d-md-inline">Rohit</span>
         </a>
@@ -77,24 +76,33 @@
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
 
           <!-- User Header -->
-          <li class="user-header" style="background:#d9f0d9">
+          <li class="user-header text-center" style="background:#d9f0d9">
 
-            
+            {{-- PROFILE IMAGE --}}
+            <img src="{{ auth()->user()->profile_image
+                    ? asset('storage/'.auth()->user()->profile_image)
+                    : asset('assets/admin/assets/img/default-user.png') }}" class="rounded-circle mb-2" width="90"
+              height="90" style="object-fit:cover;" alt="User Image">
 
-            <p>
-              Rohit Kumar - Admin
-              <small>rohit@gmail.com</small>
+            <p class="mb-0">
+              {{ auth()->user()->name }}
+              <small class="d-block">
+                {{ auth()->user()->role->name ?? 'User' }}
+              </small>
+              <small>
+                {{ auth()->user()->email }}
+              </small>
             </p>
           </li>
 
           <!-- Footer -->
-          <li class="user-footer">
-            <a href="#" class="btn btn-default btn-flat">
+          <li class="user-footer d-flex justify-content-between px-2">
+            <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">
               Profile
             </a>
 
-            <a href="{{ route('logout') }}" class="btn btn-default btn-flat float-end"
-              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
               Sign out
             </a>
 
@@ -102,7 +110,9 @@
               @csrf
             </form>
           </li>
+
         </ul>
+
 
       </li>
       <!-- End User Menu -->

@@ -1,5 +1,3 @@
-
-
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
   <!--begin::Sidebar Brand-->
   <div class="sidebar-brand">
@@ -38,18 +36,21 @@
 
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi bi-image"></i>
-            <p>Images</p>
+          <a href="{{ route('admin.users.index') }}"
+            class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-people"></i>
+            <p>Users</p>
           </a>
         </li>
 
+
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi bi-camera-video"></i>
-            <p>Videos</p>
+          <a href="{{ route('admin.roles.index') }}" class="nav-link">
+            <i class="nav-icon bi bi-shield-lock"></i>
+            <p>Roles</p>
           </a>
         </li>
+
 
         <li class="nav-item">
           <a href="#" class="nav-link">
