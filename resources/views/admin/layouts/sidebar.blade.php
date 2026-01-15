@@ -31,35 +31,45 @@
                 </li>
 
                 {{-- Users --}}
-                @if(can('users.view'))
-                <li class="nav-item">
-                    <a href="{{ route('admin.users.index') }}" class="nav-link">
-                        <i class="nav-icon bi bi-people"></i>
-                        <p>Users</p>
-                    </a>
-                </li>
+                @if (can('users.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                            <i class="nav-icon bi bi-people"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
                 @endif
 
                 {{-- Roles --}}
-                @if(auth()->user()->hasPermission('roles.view'))
-                <li class="nav-item">
-                    <a href="{{ route('admin.roles.index') }}"
-                        class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-shield-lock"></i>
-                        <p>Roles</p>
-                    </a>
-                </li>
+                @if (auth()->user()->hasPermission('roles.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.roles.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-shield-lock"></i>
+                            <p>Roles</p>
+                        </a>
+                    </li>
+                @endif
+                @if (auth()->user()->hasPermission('category.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.categories.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-tags"></i>
+                            <p>Categories</p>
+                        </a>
+                    </li>
                 @endif
 
+
                 {{-- Permissions --}}
-                @if(auth()->user()->hasPermission('permissions.view'))
-                <li class="nav-item">
-                    <a href="{{ route('admin.permissions.index') }}"
-                        class="nav-link {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-sliders"></i>
-                        <p>Permissions</p>
-                    </a>
-                </li>
+                @if (auth()->user()->hasPermission('permissions.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.permissions.index') }}"
+                            class="nav-link {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-sliders"></i>
+                            <p>Permissions</p>
+                        </a>
+                    </li>
                 @endif
 
 

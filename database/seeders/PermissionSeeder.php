@@ -27,11 +27,12 @@ class PermissionSeeder extends Seeder
             'Roles' => [
                 'roles.view',
                 'roles.manage',
+                'roles.delete',
             ],
 
-            'Orders' => [
-                'orders.view',
-                'orders.create',
+            'Categories' => [
+                'category.view',
+                'category.manage',
             ],
             'Permissions' => [
                 'permissions.view',

@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
@@ -54,6 +54,23 @@ Route::middleware('auth')
         Route::post('/permissions', [PermissionController::class, 'update'])
             ->name('permissions.update')
             ->middleware('permission:permissions.manage');
+
+
+        //categery 
+        Route::get('/categories', [CategoryController::class, 'index'])
+            ->name('categories.index');
+
+        Route::post('/categories', [CategoryController::class, 'store'])
+            ->name('categories.store');
+
+        Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])
+            ->name('categories.destroy');
+
+        Route::post('/sub-categories', [CategoryController::class, 'storeSub'])
+            ->name('subcategories.store');
+
+        Route::delete('/sub-categories/{id}', [CategoryController::class, 'destroySub'])
+            ->name('subcategories.destroy');
     });
 
 
