@@ -1,13 +1,11 @@
 @extends('admin.layouts.app')
 
 @push('title')
-    Role Management
+    Permission Management
 @endpush
 
 
 @section('content')
- 
-
     {{-- FORM CARD (TOP) --}}
     <div class="card mb-4">
 
@@ -16,37 +14,38 @@
                 <h3 class="card-title">All Users</h3>
             </div>
 
-            <form method="POST"
-                action="{{ isset($editRole) ? route('admin.roles.update', $editRole->id) : route('admin.roles.store') }}">
+            <form method="POST" action="{{ route('admin.permissions.update') }}">
                 @csrf
-                @isset($editRole)
-                    @method('PUT')
-                @endisset
 
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>Role Name</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            value="{{ old('name', $editRole->name ?? '') }}" required>
+                <select name="role_id" class="form-control mb-3" onchange="this.form.submit()">
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" {{ request('role_id') == $role->id ? 'selected' : '' }}>
+                            {{ ucfirst($role->name) }}
+                        </option>
+                    @endforeach
+                </select>
 
-                        @error('name')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
+                @foreach ($permissions->groupBy('group') as $group => $items)
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>{{ $group }}</strong>
+                        </div>
+
+                        <div class="card-body">
+                            @foreach ($items as $permission)
+                                <div class="form-check">
+                                    <input type="checkbox" name="permissions[]" value="{{ $permission->id }}"
+                                        {{ $role->permissions->contains($permission->id) ? 'checked' : '' }}>
+                                    <label>{{ $permission->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-
-                <div class="card-footer">
-                    <button class="btn btn-primary">
-                        {{ isset($editRole) ? 'Update Role' : 'Save Role' }}
-                    </button>
-
-                    @isset($editRole)
-                        <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary">
-                            Cancel
-                        </a>
-                    @endisset
-                </div>
+                @endforeach
+                <button class="btn btn-primary mt-3">Save Permissions</button>
             </form>
+
+
         </div>
         <div class="card card-outline card-info">
             <div class="card-header">

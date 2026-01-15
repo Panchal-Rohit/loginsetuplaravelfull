@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleController;
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 
@@ -39,11 +40,18 @@ Route::middleware('auth')
         Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
         // ROLES (✅ FIXED)
-        Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');   
-        Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');  
+        Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+        Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
         Route::get('/roles/{id}/edit', [RoleController::class, 'edit'])->name('roles.edit');
         Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
         Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+        //permission
+        Route::get('/permissions', [PermissionController::class, 'index'])
+            ->name('admin.permissions.index');
+
+        Route::post('/permissions', [PermissionController::class, 'update'])
+            ->name('admin.permissions.update');
     });
 
 

@@ -74,6 +74,8 @@
      
       <!--end::Sidebar-->
       <!--begin::App Main-->
+      <x-toast-message />
+
            @yield('content')
       <!--end::App Main-->
       <!--begin::Footer-->

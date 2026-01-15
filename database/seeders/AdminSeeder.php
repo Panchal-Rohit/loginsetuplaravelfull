@@ -18,7 +18,6 @@ class AdminSeeder extends Seeder
         }
         $user->name= 'Rohit';
         $user->email='rohitrantox@gmail.com';
-        $user->role=1;
         $user->password= Hash::make('admin123');
         $user->profile_image = 'admin-pannel/images/img.jpg';
         $user->save();

@@ -9,31 +9,7 @@ use App\Models\Role;
 
 class UserController extends Controller
 {
-    // public function index()
-    // {
-    //     $users = User::all();
-    //     return view('admin.users.index', compact('users'));
-    // }
-
-    // public function edit($id)
-    // {
-    //     $user = User::findOrFail($id);
-    //     return view('admin.users.edit', compact('user'));
-    // }
-
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'role' => 'required'
-    //     ]);
-
-    //     $user = User::findOrFail($id);
-    //     $user->role = $request->role;
-    //     $user->save();
-
-    //     return redirect()->route('admin.users.index')
-    //         ->with('success','User role updated');
-    // }
+    
 
 
 
