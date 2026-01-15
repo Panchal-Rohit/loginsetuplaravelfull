@@ -8,7 +8,7 @@
             {{-- <img src="{{ $user->profile_image 
                                 ? asset('storage/'.$user->profile_image) 
                                 : asset('assets/admin/assets/img/default-user.png') }}"
-        class="brand-image opacity-75 shadow" alt="User Image"> --}}
+                class="brand-image opacity-75 shadow" alt="User Image"> --}}
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
             <span class="brand-text fw-light">{{ config('app.name') }}</span>
@@ -22,65 +22,46 @@
             <!--begin::Sidebar Menu-->
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation"
                 aria-label="Main navigation" data-accordion="false" id="navigation">
-                <li class="nav-item menu-open">
-                    <a href="{{ url('/dashboard') }}" class="nav-link active">
+                {{-- Dashboard --}}
+                <li class="nav-item">
+                    <a href="{{ url('/dashboard') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-speedometer"></i>
-                        <p>
-                            Dashboard
-
-                        </p>
+                        <p>Dashboard</p>
                     </a>
-
                 </li>
 
-
-
+                {{-- Users --}}
+                @if(can('users.view'))
                 <li class="nav-item">
-                    <a href="{{ route('admin.users.index') }}"
-                        class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link">
                         <i class="nav-icon bi bi-people"></i>
                         <p>Users</p>
                     </a>
                 </li>
-                @if (auth()->user()->hasPermission('users.view'))
-                    <li class="nav-item">
-                        <a href="{{ route('admin.users.index') }}" class="nav-link">
-                            <i class="nav-icon bi bi-people"></i>
-                            <p>Users</p>
-                        </a>
-                    </li>
                 @endif
 
-
-
+                {{-- Roles --}}
+                @if(auth()->user()->hasPermission('roles.view'))
                 <li class="nav-item">
-                    <a href="{{ route('admin.roles.index') }}" class="nav-link">
+                    <a href="{{ route('admin.roles.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-shield-lock"></i>
                         <p>Roles</p>
                     </a>
                 </li>
+                @endif
 
-
+                {{-- Permissions --}}
+                @if(auth()->user()->hasPermission('permissions.view'))
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon bi bi-newspaper"></i>
-                        <p>News & Events</p>
+                    <a href="{{ route('admin.permissions.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-sliders"></i>
+                        <p>Permissions</p>
                     </a>
                 </li>
+                @endif
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon bi bi-envelope"></i>
-                        <p>Contact Messages</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon bi bi-file-earmark-text"></i>
-                        <p>Admission Applications</p>
-                    </a>
-                </li>
 
 
             </ul>

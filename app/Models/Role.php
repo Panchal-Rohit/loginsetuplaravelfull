@@ -8,14 +8,6 @@ use App\Models\Permission;
 class Role extends Model
 {
     protected $fillable = ['name'];
-
-    // 👥 Role → Users
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
-
-    // 🔑 Role → Permissions (THIS WAS MISSING / WRONG)
     public function permissions()
     {
         return $this->belongsToMany(
@@ -24,5 +16,11 @@ class Role extends Model
             'role_id',
             'permission_id'
         );
+    }
+
+    // 👥 Role → Users
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }

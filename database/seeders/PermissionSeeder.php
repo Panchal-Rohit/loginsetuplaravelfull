@@ -33,6 +33,10 @@ class PermissionSeeder extends Seeder
                 'orders.view',
                 'orders.create',
             ],
+            'Permissions' => [
+                'permissions.view',
+                'permissions.manage',
+            ],
         ];
 
         foreach ($permissions as $group => $items) {
@@ -45,4 +49,3 @@ class PermissionSeeder extends Seeder
         }
     }
 }
-

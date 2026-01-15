@@ -11,6 +11,8 @@ User Controller
         <h3 class="card-title">All Users</h3>
     </div>
 
+
+
     <div class="card-body">
         <table class="table table-bordered table-hover align-middle">
             <thead>
@@ -47,24 +49,37 @@ User Controller
                     </td>
 
                     <td>
-                        <a href="{{ route('admin.users.edit',$user->id) }}" class="btn btn-sm btn-primary">
+
+                        {{-- EDIT --}}
+                        @if(can('users.edit'))
+                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-warning">
                             Edit
                         </a>
+                        @endif
 
-                        <form action="{{ route('admin.users.destroy',$user->id) }}" method="POST"
-                            style="display:inline">
+                        {{-- DELETE --}}
+                        @if(can('users.delete'))
+                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm btn-danger" onclick="return confirm('Delete user?')">
                                 Delete
                             </button>
                         </form>
+                        @endif
+
                     </td>
+
 
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        @if($users->hasPages())
+        <div class="mt-3">
+            {{ $users->links() }}
+        </div>
+        @endif
     </div>
 </div>
 

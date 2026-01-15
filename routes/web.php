@@ -46,12 +46,14 @@ Route::middleware('auth')
         Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
         Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
-        //permission
+        // Permissions
         Route::get('/permissions', [PermissionController::class, 'index'])
-            ->name('admin.permissions.index');
+            ->name('permissions.index')
+            ->middleware('permission:permissions.view');
 
         Route::post('/permissions', [PermissionController::class, 'update'])
-            ->name('admin.permissions.update');
+            ->name('permissions.update')
+            ->middleware('permission:permissions.manage');
     });
 
 

@@ -7,26 +7,47 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 
+/**
+ * @noinspection PhpUndefinedMethodInspection
+ */
 class UserController extends Controller
 {
-    
+    /**
+     * 🔐 PERMISSION MIDDLEWARE
+     */
+    public function __construct()
+    {
+        $this->middleware('permission:users.view')->only('index');
+        $this->middleware('permission:users.edit')->only('edit', 'update');
+        $this->middleware('permission:users.delete')->only('destroy');
 
+        // future use
+        // $this->middleware('permission:users.create')->only('create','store');
+    }
 
-
+    /**
+     * 📄 LIST USERS
+     */
     public function index()
     {
-        $users = User::with('role')->get();
+        $users = User::with('role')->paginate(5);
         return view('admin.users.index', compact('users'));
     }
 
+    /**
+     * ✏️ EDIT USER ROLE
+     */
     public function edit($id)
     {
         $user  = User::findOrFail($id);
-        $roles = Role::all(); // 🔥 YAHI MAGIC HAI
+        $roles = Role::all();
 
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
+    /**
+     * 🔄 UPDATE USER ROLE
+     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -42,11 +63,13 @@ class UserController extends Controller
             ->with('success', 'Role assigned successfully');
     }
 
-
-
+    /**
+     * 🗑️ DELETE USER
+     */
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
+
         return back()->with('success', 'User deleted');
     }
 }
